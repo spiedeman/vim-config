@@ -1,4 +1,4 @@
-# Backup My Config For Vim
+# Backup My Configs
 --------------------------
 
 This repository is used to store my configs.
