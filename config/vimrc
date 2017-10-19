@@ -1,0 +1,571 @@
+"===========================================================================
+"DESCRIPTION:自用vimrc文件，for Linux
+"
+"Last Change:2017年10月11日
+"
+"Version:1.2
+"
+"===========================================================================
+
+
+    " Vim-Plugin Manager
+    " Specify a directory for plugins
+    " - Avoid using standard Vim directory names like 'plugin'
+    call plug#begin('~/.vim/vim_plugin')
+
+    " Make sure using single quotes
+    " Shorthand notation for full URL.
+    Plug 'yianwillis/vimcdoc'               "中文帮助文档
+    Plug 'scrooloose/nerdtree'				"文件树浏览
+    Plug 'tpope/vim-fugitive'               "管理 Git 仓库
+
+    Plug 'SirVer/ultisnips'					"代码块补全
+    Plug 'honza/vim-snippets'				"配合 ultisnips
+    Plug 'w0rp/ale'							"异步语法检查
+    Plug 'chiel92/vim-autoformat'			"自动格式化代码
+
+    Plug 'scrooloose/nerdcommenter'			"批量、快速注释
+    Plug 'easymotion/vim-easymotion'		"快速查找定位
+    " Plug 'kien/ctrlp.vim'					"强大的文件搜索
+    " Plug 'tacahiroy/ctrlp-funky'			"配合 ctrlp
+    Plug 'Yggdroot/indentLine'				"自动显示缩进线
+
+    Plug 'skywind3000/asyncrun.vim'         "异步后台编译运行
+
+    Plug 'lervag/vimtex'                    "Latex 插件
+    " Plug 'vim-latex/vim-latex'
+    Plug 'godlygeek/tabular'                "老牌对齐排版工具
+    Plug 'plasticboy/vim-markdown'          "高亮 Markdown, 依赖 tabular
+    Plug 'iamcco/mathjax-support-for-mkdp'  "预览数学公式
+    Plug 'iamcco/markdown-preview.vim'      "实时预览 Markdown
+
+    " On-damand loading of plugins
+    function! BuildYCM(info)
+        " info is a dictionary with 3 fields
+        " - name:	name of plugin
+        " - status: 'installed', 'updated', or 'unchanged'
+        " - force:  set on  PlugInstall! or PlugUpdate!
+        if a:info.status == 'installed' || a:info.force
+            !bash ~/scripts/vim/youcompleteme.sh
+        endif
+    endfunction
+    Plug 'Valloric/YouCompleteMe',	{'do': function('BuildYCM')}	"强大的自动补全
+    Plug 'junegunn/fzf', {'do': './install --all'}		"强大的文件搜索
+
+    " Initialize plugin system
+    call plug#end()
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              Vim Env                               "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " 设置中文帮助
+    set helplang=cn
+    " Multi-language 
+    if has("multi_byte")
+        " UTF-8 encoding 
+        set encoding=utf-8
+        set termencoding=utf-8
+        set formatoptions+=nM
+        set fencs=utf-8,gbk
+        
+        if v:lang =~? '^\(zh\)\|\(ja\)\|\(ko\)'
+            set ambiwidth = double
+        endif 
+    else 
+        echoerr "Sorry, this version of (g)vim was not compiled with +multi_byte"
+    endif 
+    " Doc directory 
+    let helptags=$HOME.'/.vim/doc'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              Vim GUI                               "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Basic Setting
+	set number             "显示行号
+    set nocompatible       "与vi不兼容
+    set cursorline         "突出显示当前行
+    set cursorcolumn       "突出显示当前列
+    set ruler              "打开状态栏标尺
+    set showcmd            "输入的命令显示出来
+    set wildmenu
+    set shiftwidth=4       "设定<<和>>命令移动时的宽度为4
+    set softtabstop=4      "使得按退格键时可以一次删掉4个空格
+    set tabstop=4          "设定tab长度为4
+	set expandtab          "修改tab为4个空格
+    set autoindent
+    set nobackup           "覆盖文件时不备份
+    set autochdir          "自动切换当前目录为当前文件所在的目录
+    set backupcopy=yes     "设置备份时的行为为覆盖
+    " set nowrapscan         "禁止在搜索到文件两端时重新搜索
+    set incsearch          "增量搜索
+    set hlsearch           "高亮显示搜索结果
+    set ignorecase         "搜索时忽略大小写
+    set smartcase          "但有一个及以上大小写时仍对其敏感
+
+    set noerrorbells       "关闭错误信息响铃
+    set novisualbell       "关闭使用可视响铃代替呼叫
+    set t_vb=              "置空错误铃声的终端代码
+
+    set showmatch          "插入括号时，短暂地跳转到匹配的括号上去
+    set matchtime=2        "设置上一条命令的持续时间
+    set magic              "设置魔术,支持正则表达式
+    set hidden             "允许在有未保存的修改时切换缓冲区，此时的修改由vim负责
+    set smartindent        "开启新行时使用只能自动缩进
+    set backspace=indent,eol,start  "不设定在插入状态无法用退格键和Delete键删除回车符
+    set cmdheight=1        "设定命令行的行数为1
+    set textwidth=80       "设定一行输入字符的长度
+    set wrap               "自动折行
+    set clipboard=unnamed  "访问系统剪贴板
+    set autoread           "自动读取修改了的文件
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "状态栏相关
+    set laststatus=2       "显示状态栏（默认值为1，无法显示状态栏）
+    set showtabline=2
+    set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ %{&encoding}\ %c:%l/%L%)\             "设置在状态行显示的信息
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Fold Setting
+    set foldenable         "开始折叠
+    "set foldmethod=syntax  "设置语法折叠
+    "set foldmethod=marker  "设置手动折叠
+    set foldmethod=indent  "设置缩进折叠
+    " set foldcolumn=1       "设置折叠区域的宽度
+    set foldcolumn=0       "设置折叠区域的宽度
+    setlocal foldlevel=1   "设置折叠层数为...
+    " set foldclose=all      "设置为自动关闭折叠
+    nnoremap <space> @=((foldclosed(line('.'))<0) ? 'zc' : 'zo')<CR>
+    "用空格键来开关折叠
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Color Setting
+    if has("gui_running")
+        colorscheme solarized
+    endif
+    set t_Co=256
+    " let g:solarized_termrans = 1
+    " set t_Co=16           "可以使vim在guake下是透明的
+    " let g:solarized_menu = 1
+    " let g:solarized_termcolors = 256
+    " let g:solarized_contrast = 'high'
+    " let g:solarized_termrans = 256
+    " set background=dark "实际上light才会给出正确的solarized配色
+    set background=light     "实际上light才会给出正确的solarized配色
+    syntax on              "自动语法高亮
+    " syntax enable              "自动语法高亮
+    " colorscheme solarized  "设定配色方案
+    "colorscheme dracula   "设定配色方案
+    "colorscheme molokai
+    let g:gnomebackground = 1 
+    if g:gnomebackground == 1 "dark 
+        hi CursorLine   cterm=NONE ctermbg=black     ctermfg=none
+        hi CursorColumn cterm=NONE ctermbg=black     ctermfg=none
+        hi Pmenu        cterm=NONE ctermbg=darkblue  ctermfg=234
+        hi PmenuSel     cterm=BOLD ctermbg=darkgreen ctermfg=234
+        hi StatusLine   cterm=reverse
+        hi Folded       cterm=BOLD ctermbg=black     ctermfg=246
+        hi SignColumn   cterm=NONE ctermbg=black     ctermfg=none
+        hi Error        cterm=NONE ctermbg=black     ctermfg=red
+        hi Todo         cterm=NONE ctermbg=black     ctermfg=yellow
+    else                      "light
+        hi CursorLine   cterm=NONE ctermbg=lightgrey ctermfg=none
+        hi CursorColumn cterm=NONE ctermbg=lightgrey ctermfg=none
+        hi Pmenu        cterm=BOLD ctermbg=blue      ctermfg=white
+        hi PmenuSel     cterm=BOLD ctermbg=darkcyan  ctermfg=yellow
+        hi StatusLine   cterm=inverse
+        hi StatusLineNC cterm=none ctermbg=grey
+        hi SignColumn   cterm=NONE ctermbg=lightgrey ctermfg=none
+    endif
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "Tab操作快捷 方式
+    nnoremap <C-t>n :tabnew<CR>
+    nnoremap <C-t>c :tabclose<CR>
+
+    " "tab操作快捷键
+    " map <leader>tn :tabnext<cr>
+    " map <leader>tp :tabprevious<cr>
+    " map <leader>td :tabnew<cr>
+    " map <leader>tc :tabclose<cr>
+    " map <leader>tm :tabmove<cr>
+
+    "在当前缓冲区路径下打开一个新的tab
+    "在同一个目录下编辑文件时非常有用
+    map <c-t>e :tabedit <c-r>=expand("%:p:h")<cr>/
+    " "缓冲区操作快捷方式
+    nnoremap <C-b>n :bnext<CR>
+    nnoremap <C-b>p :bprevious<CR>
+    inoremap <C-b>n <Esc>:bnext<CR><insert>
+    inoremap <C-b>p <Esc>:bprevious<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            Key Mapping                             "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " For vimrc
+    "将map leader映射为逗号","
+    let mapleader = ','
+    nmap <Leader>s :w!<cr>      "快速保存
+    nmap <Leader>S :wq<cr>      "快速保存并退出
+    nmap <Leader>q :q<cr>       "不保存退出
+    nmap <Leader>Q :q!<cr>      "不保存强制退出
+    map <silent> <leader>z :source ~/.vimrc<cr>  "重载.vimrc
+    map <silent> <leader><leader>e  :e ~/.vimrc<cr>   "编辑.vimrc
+    autocmd! bufwritepost .vimrc source ~/.vimrc "编辑.vimrc过后立即重载
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " For tab
+    "窗口分割时，进行切换的按键热键需要连接两次，比如从下方窗口移动
+    "光标到上方窗口，需要<c-w><c-w>k,非常麻烦，现在重映射为<c-k>，切换
+    "的时候会变得非常方便
+    nnoremap <Leader><Leader>l <C-w>l
+    nnoremap <Leader><Leader>h <C-w>h
+    nnoremap <Leader><Leader>k <C-w>k
+    nnoremap <Leader><Leader>j <C-w>j
+    " nnoremap <C-h> <C-w>h<C-w>
+    " nnoremap <C-j> <C-w>j<C-w>
+    " nnoremap <C-k> <C-w>k<C-w>
+    " nnoremap <C-l> <C-w>l<C-w>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           File Setting                             "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Buffer
+    "再次打开时回到最后一次进行修改的地方
+    autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal! g'\"" |
+        \ endif
+    "记住缓冲区关闭时的信息
+    set viminfo^=%
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Fortran
+    let s:extfname=expand("%:e")
+    if s:extfname==?"f90"
+        let fortran_free_source=1
+        unlet! fortran_fixed_source
+    else
+        let fortran_fixed_source=1
+        unlet! fortran_free_source
+    endif
+    let fortran_more_precise=1
+    let fortran_do_enddo=1
+    let fortran_have_tabs=1
+    let fortran_fold=1
+    let fortran_fold_conditionals=1
+    " let g:syntastic_fortran_compiler="ifort" "使语法检测正常,本该写在插件部分
+    " au BufNewFile,BufRead *.f90
+    " \let fortran_have_tabs=1
+    " \let fortran_fold=1
+    " \set foldmethod=syntax
+    " \set foldcolumn=99
+    " \let fortran_free_source=1
+    " \unlet! fortran_fixed_source
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Latex
+    let g:tex_flavor = 'latex' 
+    let g:tex_conceal= 0
+    let g:tex_fast = "bcmMPrsSvV"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                       Plugin Configuration                         "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " YCM
+    "手动关闭开启YCM
+    nnoremap <leader>y :let g:ycm_auto_trigger=0<CR>
+    nnoremap <leader>Y :let g:ycm_auto_trigger=1<CR>
+
+    "让Vim的补全菜单行为与一般IDE一致（参考VimTip1228）
+    set completeopt=longest,menu
+    "离开插入模式后自动关闭预览窗口
+    " autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+    "回车即选中当前项
+    inoremap <expr> <CR> pumvisible() ? '<C-y>' : '<CR>'
+    "打开错误诊断
+    nmap <F7> :YcmDiags<CR>
+    "上下左右键的行为会显示其他信息（insert mode shortcuts）
+    inoremap <expr> <Down>     pumvisible() ? '<C-n>' : '<Down>'
+    inoremap <expr> <Up>       pumvisible() ? '<C-p>' : '<Up>'
+    inoremap <expr> <c-d> pumvisible() ? '<PageDown><C-p><C-n>' : '<PageDown>'
+    inoremap <expr> <c-u> pumvisible() ? '<PageUp><C-p><C-n>' : '<PageUp>'
+    "ipython解释器路径
+    " let g:ycm_path_to_python_interpreter='/usr/bin/python'
+    let g:ycm_key_list_stop_completion = ['<CR>']
+    "关闭加载.ycm_extra_conf.py提示
+    let g:ycm_confirm_extra_conf=0
+    "开启YCM基于标签引擎
+    let g:ycm_collect_identifiers_from_tags_files=1
+    "语法关键字补全
+    let g:ycm_seed_identifiers_with_syntax=1
+    "在注释中也能补全
+    let g:ycm_complete_in_comments = 1
+    "在字符串中也能补全
+    let g:ycm_complete_in_strings = 1
+    "注释和字符串中的文字也会被收入补全
+    let g:ycm_collect_identifiers_from_comments_and_strings = 0
+    "如果选中项基于语义,则在文件上方弹出其详细信息
+    let g:ycm_add_preview_to_completeopt = 0 "New one
+    "补全后自动关闭预览窗口,如果上一项为0,则无关紧要
+    let g:ycm_autoclose_preview_window_after_completion= 1
+    "如果上上一项为0或上一项为1,则无关紧要
+    let g:ycm_autoclose_preview_window_after_insertion = 1
+
+    let g:ycm_use_ultisnips_completer = 1 "New one
+    "跳转到定义处
+    nnoremap <leader>g :YcmCompleter GoTo<CR>
+    "改正错误，只适用于 C-family language.
+    nmap <tab> :YcmCompleter FixIt<CR>
+    "判断是否再虚拟环境中，确保YouCompleteMe能找到相应的site packages文件夹
+    "python with virtualenv support
+    " py << EOF
+    " import os
+    " import sys
+    " if 'VIRTUAL_ENV' in os.environ:
+    "     project_base_dir = os.environ['VIRTUAL_ENV']
+    "     activate_this = os.path.join(project_base_dir,'bin/activate_this.py')
+    "     execfile(activate_this, dict(__file__=activate_this))
+    " EOF
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Ultisnips
+    let g:UltiSnipsSnippetDirectories=['UltiSnips']
+    let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips'
+    let g:UltiSnipsExpandTrigger="<c-t>"
+    let g:UltiSnipsJumpForwardTrigger="<c-k>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-j>"  
+    let g:UltiSnipsEditSplit="vertical"
+    " make YCM compatible with UltiSnips
+    " function! g:UltiSnips_Complete()
+    "     call UltiSnips#ExpandSnippet()
+    "     if g:ulti_expand_res == 0
+    "         if pumvisible()
+    "             return "\<c-n>"
+    "         else
+    "             call UltiSnips#JumpBackwards()
+    "             if g:ulti_jump_backwards_res == 0
+    "                 return "\<s-tab>"
+    "             endif
+    "         endif
+    "     endif
+    " endfunction
+    " " function! g:UltiSnips_Reverse()
+    "     " call UltiSnips#JumpForwards()
+    "     " if g:ulti_jump_forwards_res == 0
+    "     " endif
+    " " endfunction
+    " au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+    " au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsJumpBackwardTrigger . "<C-R>=g:UltiSnips_Reverse()<cr>"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Nerdtree
+    map <F3> :NERDTreeToggle<CR>     "设置F3为打开nerdtree的快捷键
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Nerdcommenter
+    let g:NERDSpaceDelims = 1
+    let g:NERDCompactSexyComs = 1
+    let g:NERDDefaultAlign = 'left'
+    let g:NERDAltDelims_java = 1
+    let g:NERDCommentEmptyLines = 1
+    let g:NERDTrimTrailingWhitespace = 1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Vimtex
+    " automatically jump to the first error 
+    " but not work well with continuous compilation
+    let g:vimtex_quickfix_autojump = 0
+    " specify PDF viewer
+    let g:vimtex_view_method = 'zathura'
+    " make YCM work
+    if !exists('g:ycm_semantic_triggers')
+        let g:ycm_semantic_triggers = {}
+    endif
+    let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+
+    let g:vimtex_syntax_minted = [
+        \ {
+        \   'lang' : 'python',
+        \   'ignore' : [
+        \       'pythonEscape',
+        \       'pythonBEscape',
+        \       ],
+        \ }
+        \]
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " " Latex-Preview
+    " let g:livepreview_engine = 'pdflatex'
+    " let g:livepreview_previewer = 'zathura'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Vim-markdown
+    " fenced code block languages
+    let g:vim_markdown_fenced_languages = ['py=python']
+    let g:vim_markdown_folding_disabled = 1
+    " set header folding level
+    let g:vim_markdown_folding_level = 6
+    let g:vim_markdown_toc_autofit = 1
+    " adjust new list item indent
+    let g:vim_markdown_new_list_item_indent = 2
+    " disable math conceal with LaTex math syntax enabled
+    " let g:tex_conceal = ""
+    let g:vim_markdown_math = 1
+    " syntax concealing
+    let g:vim_markdown_conceal = 0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Markdown-Preview
+    " 设置为 1 可以在打开markdown文件时自动打开浏览器预览，只在打开markdown文件时打开一次
+    let g:mkdp_auto_start= 1
+    " 设置为 1 在编辑markdown的时候检查预览窗口是否打开，没有则打开
+    let g:mkdp_auto_open= 1
+    " 切换 buffer 的时候自动关闭预览窗口，设置为 0 则不自动关闭
+    let g:mkdp_auto_close= 0
+    " 设置为 1 则只在保存文件或退出插入模式的时候更新预览，默认实时预览
+    let g:mkdp_refresh_slow= 0
+    " 设置为 1 则所有文件都可以用命令 MarkdownPreview
+    " 进行预览，默认只有markdown文件可以使用该命令
+    let g:mkdp_command_for_global= 0
+    nmap <silent> <c-p> <Plug>MarkdownPreview
+    nmap <silent> <c-P> <Plug>StopMarkdownPreview
+    imap <silent> <c-p> <Plug>MarkdownPreview
+    imap <silent> <c-P> <Plug>StopMarkdownPreview
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Easymotion
+    " 跨窗口搜索一（两）个字母
+    map f <Plug>(easymotion-overwin-f)
+    map s <Plug>(easymotion-overwin-f2)
+    " 双向搜索词头和词尾
+    map <Leader>w <Plug>(easymotion-bd-w)
+    map <Leader>e <Plug>(easymotion-bd-e)
+    " 覆盖 vim 字符串搜索，可以跨窗口
+    map / <Plug>(easymotion-sn)
+    " line motion 
+    map <Leader>l <Plug>(easymotion-lineforward)
+    map <Leader>j <Plug>(easymotion-j)
+    map <Leader>k <Plug>(easymotion-k)
+    map <Leader>h <Plug>(easymotion-linebackward)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Fzf
+    let g:fzf_action = {
+    \   'alt-t': 'tab split',
+    \   '-': 'split',
+    \   '/': 'vsplit' }
+    let g:fzf_layout={'down': '~50%'}
+    " let g:fzf_layout={'window': 'enew'}
+    let g:fzf_colors = {'border':  ['fg', 'Pmenu']}
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " " Ctrlp
+    " let g:ctrlp_map = '<c-p>'
+    " let g:ctrlp_cmd = 'CtrlP'
+    " let g:ctrlp_working_path_mode = 'ra'
+    " " let g:Ctrl_match_height=15
+    " set wildignore+=*/tem/*,*.so,*.swp,*.zip
+    " let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)'
+    " let g:ctrlp_custom_ignore = {
+    "     \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+    "     \ 'file': '\v\.(exe|so|dll)$',
+    "     \ 'link': 'some_bad_symbolic_links',
+    "     \ }
+    " let g:ctrl_user_commond = 'find %s -type f'   "MacOSX/Linux"
+    " " 操作命令
+    " " ctrl + j/k 上下选择
+    " " ctrl + x 在当前窗口水平分屏打开文件
+    " " ctrl + v 同上，垂直分屏
+    " " ctrl + t 在新的tab中打开
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " " Ctrlp-funky
+    " nnoremap <leader>fu :CtrlPFunky<CR>
+    " nnoremap <leader>fU :execute 'CtrlPFunky' . expand('<cword>')<CR>
+    " let g:ctrlp_funky_syntax_highlight=1
+    " let g:ctrlp_extensions=['funky']
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " " Syntastic
+    " set statusline+=%#warningmsg#
+    " set statusline+=%{SyntasticStatuslineFlag()}
+    " set statusline+=%*
+    "
+    " let g:syntastic_python_checkers = ['pep8']
+    " let g:syntastic_always_populate_loc_list = 1
+    " let g:syntastic_auto_loc_list = 1
+    " let g:syntastic_check_on_open = 0
+    " let g:syntastic_check_on_wq = 0
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " ALE
+    autocmd FileType * noremap <buffer> <Leader><Leader>c :ALELint<CR>
+    let g:ale_linters = {'python': ['flake8','pycodestyle'],
+                        \'c':['clang']}
+    let g:ale_python_pycodestyle_options='--ignore=E305 %s'
+    let g:ale_python_flake8_options='--ignore=E305 %s'
+    let g:ale_lint_on_enter = 1
+    let g:ale_lint_on_text_changed = 'never'
+    let g:ale_set_quickfix = 1
+    " if show the error column forever.
+    let g:ale_sign_column_always = 1
+    let g:ale_sign_error = '••'
+
+    " open window for error and warning.
+    " let g:ale_open_list = 1
+    " customize format for error and warning messages.
+    " let g:ale_echo_msg_error_str = 'E'
+    " let g:ale_echo_msg_warning_str = 'W'
+    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+    nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+    nmap <silent> <C-j> <Plug>(ale_next_wrap)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Autoformat
+    autocmd FileType python,c,fortran noremap <buffer> <F10> :Autoformat<CR>
+    " nmap <buffer> <F8> :Autoformat<CR>
+    " 插件会自动设置这两项，yapf 的优势在于代码风格的可定制性。
+    let g:formatter_python=['yapf']
+    let g:formatter_yapf_style='google'
+
+    let g:autoformat_autoindent=0
+    let g:autoformat_retab=0
+    let g:autoformat_remove_trailing_spaces=0
+    autocmd FileType vim,tex let b:autoformat_autoindent=0
+    au BufWrite * :Autoformat
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " AsyncRun
+    " quick run
+    nmap <F5> :call <SID>compile_and_run()<CR>
+    function! s:compile_and_run()
+        exec 'w'
+        if &filetype == 'fortran'
+            exec "AsyncRun! ifort % -o %<; time ./%<"
+        elseif &filetype == 'c'
+            exec "AsyncRun! gcc % -o %<; time ./%<"
+        elseif &filetype == 'cpp'
+            exec "AsyncRun! g++ -std=c++11 % -o %<; time ./%<"
+        elseif &filetype == 'java'
+            exec "AsyncRun! javac %; time java /%<"
+        elseif &filetype == 'sh'
+            exec "AsyncRun! time bash %"
+        elseif &filetype == 'python'
+            exec "AsyncRun! python %"
+        elseif &filetype == 'tex'
+            exec "VimtexCompile"
+        endif
+    endfunction 
+    " bind <F9> to open quickfix window rapidly.
+    nmap <f9> :call asyncrun#quickfix_toggle(10)<cr>
+    " ring bell when finished.
+    let g:asyncrun_exit = "silent call system('play ~/Music/notify/facebook.wav  &')"
+    " open quickfix window in right way.
+    " augroup ASYNCRUN
+    "     autocmd QuickFixCmdPost * botright copen 8
+    "     " autocmd User AsyncRunStart * call asyncrun#quickfix_toggle(8,1)
+    " augroup END
+    augroup vimrc
+        autocmd QuickFixCmdPost * call asyncrun#quickfix_toggle(10,1)
+    augroup END
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Powerline
+    python from powerline.vim import setup as powerline_setup
+    python powerline_setup()
+    python del powerline_setup
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " IndentLine
+    " let g:indentLine_setConceal = 0
+    nmap <leader>i :IndentLinesToggle<cr>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " " VimIM
+    " let g:vimim_cloud = 'sogou,baidu,qq'
+    " let g:vimim_map = 'tav_as_gi'
+    " " let g:vimim_mode = 'dynamic'
+    " " let g:vimim_punctuation = 2
+    " let g:vimim_shuangpin = 1
+    " let g:vimim_toggle = 'sogou,pinyin'
+
+
