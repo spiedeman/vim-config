@@ -15,6 +15,8 @@
 
     " Make sure using single quotes
     " Shorthand notation for full URL.
+    Plug 'icymind/NeoSolarized'
+    Plug 'altercation/vim-colors-solarized'
     Plug 'yianwillis/vimcdoc'               "中文帮助文档
     Plug 'scrooloose/nerdtree'				"文件树浏览
     Plug 'tpope/vim-fugitive'               "管理 Git 仓库
@@ -138,25 +140,30 @@
     "用空格键来开关折叠
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " Color Setting
+    syntax on              "自动语法高亮
+    " syntax enable              "自动语法高亮
     if has("gui_running")
+        set background=dark "实际上light才会给出正确的solarized配色
+        " set background=light     "实际上light才会给出正确的solarized配色
+        colorscheme NeoSolarized
+        " colorscheme solarized
+    else 
+        set background=dark "实际上light才会给出正确的solarized配色
+        " set background=light     "实际上light才会给出正确的solarized配色
+        " colorscheme NeoSolarized
         colorscheme solarized
     endif
-    set t_Co=256
     " let g:solarized_termrans = 1
     " set t_Co=16           "可以使vim在guake下是透明的
-    " let g:solarized_menu = 1
+    set t_Co=256
     " let g:solarized_termcolors = 256
     " let g:solarized_contrast = 'high'
     " let g:solarized_termrans = 256
-    " set background=dark "实际上light才会给出正确的solarized配色
-    set background=light     "实际上light才会给出正确的solarized配色
-    syntax on              "自动语法高亮
-    " syntax enable              "自动语法高亮
     " colorscheme solarized  "设定配色方案
     "colorscheme dracula   "设定配色方案
     "colorscheme molokai
-    let g:gnomebackground = 1 
-    if g:gnomebackground == 1 "dark 
+    let g:gnomebackground = 1
+    if g:gnomebackground == 1 "dark
         hi CursorLine   cterm=NONE ctermbg=black     ctermfg=none
         hi CursorColumn cterm=NONE ctermbg=black     ctermfg=none
         hi Pmenu        cterm=NONE ctermbg=darkblue  ctermfg=234
@@ -284,6 +291,8 @@
     inoremap <expr> <c-d> pumvisible() ? '<PageDown><C-p><C-n>' : '<PageDown>'
     inoremap <expr> <c-u> pumvisible() ? '<PageUp><C-p><C-n>' : '<PageUp>'
     "ipython解释器路径
+    " 如果vim支持python3而不是2,就需指定python解释器路径
+    " let g:ycm_server_python_interpreter='/usr/bin/python'
     " let g:ycm_path_to_python_interpreter='/usr/bin/python'
     let g:ycm_key_list_stop_completion = ['<CR>']
     "关闭加载.ycm_extra_conf.py提示
@@ -518,6 +527,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " AsyncRun
     " quick run
+    imap <F5> <Esc>:call <SID>compile_and_run()<CR>
     nmap <F5> :call <SID>compile_and_run()<CR>
     function! s:compile_and_run()
         exec 'w'
@@ -539,6 +549,11 @@
     endfunction 
     " bind <F9> to open quickfix window rapidly.
     nmap <f9> :call asyncrun#quickfix_toggle(10)<cr>
+    " like Emacs, use <M-x> to type commands.
+    set timeoutlen=500 ttimeoutlen=100
+    exec "set <M-x>=\ex"
+    imap <M-x> <Esc>:AsyncRun
+    nmap <M-x> :AsyncRun
     " ring bell when finished.
     let g:asyncrun_exit = "silent call system('play ~/Music/notify/facebook.wav  &')"
     " open quickfix window in right way.
