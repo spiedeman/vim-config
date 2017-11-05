@@ -49,7 +49,7 @@
         " - force:  set on  PlugInstall! or PlugUpdate!
         if a:info.status == 'installed' || a:info.force
             !bash ~/scripts/vim/youcompleteme.sh
-            !bash ~/config/youcom.sh "for ITP
+            " !bash ~/config/youcom.sh "for ITP
         endif
     endfunction
     Plug 'Valloric/YouCompleteMe',	{'do': function('BuildYCM')}	"强大的自动补全
