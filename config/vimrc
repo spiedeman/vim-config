@@ -142,6 +142,15 @@
     " Color Setting
     syntax on              "自动语法高亮
     " syntax enable              "自动语法高亮
+    set t_Co=16           "可以使vim在guake下是透明的
+    " set t_Co=256
+    " let g:solarized_termcolors = 16
+    let g:solarized_termrans = 1
+    let g:solarized_degrade = 1
+    let g:solarized_underline = 0
+    let g:solarized_contrast = 'low'
+    let g:solarized_contrast = 'normal'
+    let g:solarized_contrast = 'high'
     if has("gui_running")
         set background=dark "实际上light才会给出正确的solarized配色
         " set background=light     "实际上light才会给出正确的solarized配色
@@ -150,15 +159,9 @@
     else 
         set background=dark "实际上light才会给出正确的solarized配色
         " set background=light     "实际上light才会给出正确的solarized配色
-        " colorscheme NeoSolarized
+        colorscheme NeoSolarized
         colorscheme solarized
     endif
-    " let g:solarized_termrans = 1
-    " set t_Co=16           "可以使vim在guake下是透明的
-    set t_Co=256
-    " let g:solarized_termcolors = 256
-    " let g:solarized_contrast = 'high'
-    " let g:solarized_termrans = 256
     " colorscheme solarized  "设定配色方案
     "colorscheme dracula   "设定配色方案
     "colorscheme molokai
