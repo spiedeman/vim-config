@@ -143,11 +143,11 @@
     " Color Setting
     syntax on              "自动语法高亮
     " syntax enable              "自动语法高亮
-    set t_Co=16           "可以使vim在guake下是透明的
-    " set t_Co=256
+    " set t_Co=16           "可以使vim在guake下是透明的
+    set t_Co=256
     " let g:solarized_termcolors = 16
-    let g:solarized_termrans = 1
-    let g:solarized_degrade = 1
+    " let g:solarized_termrans = 1
+    " let g:solarized_degrade = 1
     let g:solarized_underline = 0
     let g:solarized_contrast = 'low'
     let g:solarized_contrast = 'normal'
@@ -536,7 +536,7 @@
     function! s:compile_and_run()
         exec 'w'
         if &filetype == 'fortran'
-            exec "AsyncRun! ifort % -o %<; time ./%<"
+            exec "AsyncRun! mpifort % -o %< -qopenmp -fpp -mkl; time ./%<"
         elseif &filetype == 'c'
             exec "AsyncRun! gcc % -o %<; time ./%<"
         elseif &filetype == 'cpp'
