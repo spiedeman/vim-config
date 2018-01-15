@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo "<<< INSTALL VIM8.0 AND CONFIGURE IT."
-echo "\n" | sudo -S add-apt-repository ppa:jonathonf/vim
+# echo "\n" | sudo -S add-apt-repository ppa:jonathonf/vim
+echo "xiaomei1102" | sudo -S add-apt-repository ppa:jonathonf/vim -y
 sudo apt update
 echo "y" | sudo apt upgrade
 
@@ -12,12 +13,12 @@ echo ${vimpy2%%/*} | sudo update-alternatives --config vim
 if ! $(which curl > /dev/null 2>&1); then
     echo ">>> INSTALL curl..."
     # echo "xiaomei1102" | sudo -S apt install curl
-    sudo apt install curl
+    sudo apt install curl -y
 fi
 echo ">>> INSTALL NECESSARY COMMANDS AND LIBARARY."
 echo " "
-sudo apt install build-essential cmake
-sudo apt install libncurses5-dev python-dev
+sudo apt install build-essential cmake -y
+sudo apt install libncurses5-dev python-dev -y
 
 if ! [ -f ~/.vim/autoload/plug.vim ]; then
     echo ">>> INSTALL plug.vim..."
