@@ -1,0 +1,80 @@
+snippet bye "My mail signature"
+Good bye, Sir. Hope to talk to you soon.
+- Arthur, King of Britain
+endsnippet
+
+snippet title "Titelize in the Transformation" 
+${1:a text} ${1/\w+\s*/\u$0/g}
+endsnippet
+
+# type o at beginning return one, t return two, return content what I typed
+# anything else.
+snippet cond "" 
+${1:some_text}${1/(o)|(t)|..*/(?1:ne)(?2:wo)/}
+endsnippet
+
+
+# Inword trigger
+# option 'i' stand for it.
+snippet ri "rizer" i
+rizer
+endsnippet
+
+# Regular Expression triggers
+# option 'r' stand for it. This example means we can type either "cha, chap, chapte, chapter, chae..." to expand.
+snippet "chap?t?e?r?" "Latex Chapter" rb
+\section{chapter}
+	$0
+\end{chapter}
+endsnippet
+
+# Regular Expression triggers
+# support define triggers with special characters, whitespaces or multiword triggers.
+snippet " this is a trigger" "" r
+Hello world
+endsnippet
+
+global !p
+def fraction(a,b):
+	try:
+		return "%.1f" % (float(a)/float(b))
+	except (ValueError, ZeroDivisionError):
+		return "ERR"
+endglobal
+
+snippet 75wrds "" b
+750words.com: ${1:750} words in ${2:20} minutes - `!p snip.rv = fraction(t[1], t[2])` wpm.
+endsnippet
+
+snippet context "" options
+context "$1" do
+	${0:${VISUAL:# assertions}}
+end 
+endsnippet
+
+snippet wow "" 
+${1:some_text}`!p snip.rv=(75-2*len(t[1]))*' '+t[1].upper()`
+endsnippet
+
+# postfix snippets depend on regular support
+snippet "([^\s].*)\.return" "" r
+return `!p snip.rv=match.group(1)`$0
+endsnippet
+
+global !p
+def comment_bash(cmt):
+	lside = (77 - len(cmt)) / 2
+	rside = (77 - len(cmt) - lside)
+endglobal
+
+snippet "([^\s].*)\.bash" "" r
+`!p cmt=match.group(1);lside=(77 - len(cmt)) / 2;rside=(77 - len(cmt) - lside);snip.rv='#'+lside*' '+cmt+rside*' '+'#'`
+endsnippet
+
+snippet "([^\s].*)\.bash2" "" r
+`!p cmt=match.group(1);snip.rv=4*'#'+' '+cmt`
+endsnippet
+
+snippet "([^\s].*)\.bash3" "" r
+`!p cmt=match.group(1);snip.rv=2*'#'+' '+cmt`
+endsnippet

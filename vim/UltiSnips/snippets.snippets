@@ -1,0 +1,11 @@
+snippet snip "snippet"
+${1:snippet} $2 "$3" ${4:options}
+$0
+end${1/\w+\s*/$0/g}
+endsnippet
+
+snippet gl(obal)? "global !p" 
+global !p
+$0
+endglobal
+endsnippet

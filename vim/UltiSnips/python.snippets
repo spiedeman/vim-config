@@ -1,0 +1,24 @@
+snippet head "coding info"
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# jiayun @ `date +%Y-%m-%d`
+$0
+endsnippet
+
+snippet ihead "coding info"
+#!/usr/bin/env ipython
+# -*- coding: utf-8 -*-
+# jiayun @ `date +%Y-%m-%d`
+$0
+endsnippet
+
+snippet gcd "" options
+def gcd(a,b):
+	if b==0:return a
+	return gcd(b,a%b)
+endsnippet
+
+snippet dfun "def fun():..." 
+def ${1:fname}(${2:args...}):
+	$0
+endsnippet

@@ -1,0 +1,111 @@
+snippet prg "program"
+PROGRAM $1
+!
+! File   = 
+! Author = jiayun
+! Create = `date +%Y-%m-%d`
+!
+IMPLICIT NONE
+$0
+END PROGRAM $1
+endsnippet 
+
+snippet mod "module"
+MODULE $1
+IMPLICIT NONE
+$0
+END MODULE $1
+endsnippet
+
+snippet fun "function"
+FUNCTION $1(${2:arg...})
+IMPLICIT NONE
+$0
+END FUNCTION $1
+endsnippet
+
+snippet cfun "function in contains" 
+function $1(${2:arg...})
+	implicit none
+	$0
+end function $1
+endsnippet
+
+snippet rfun "recursive function" 
+recursive function $1(${2:arg...})
+	implicit none
+	$0
+end function $1
+endsnippet
+
+snippet sub "subroutine"	
+SUBROUTINE $1 (${2:arg...})
+IMPLICIT NONE
+$0
+END SUBROUTINE $1
+endsnippet
+
+snippet csub "subroutine in contains" 
+subroutine $1 (${2:arg...})
+	implicit none
+	$0
+end subroutine $1
+endsnippet
+
+snippet rsub "recursive subroutine" 
+recursive subroutine $1 (${2:arg...})
+	implicit none
+	$0
+end subroutine $1
+endsnippet
+
+snippet ctain "contains" 
+contains
+	$0
+endsnippet
+
+snippet in "integer" 
+INTEGER, ${1:PARAMETER} :: $0
+endsnippet
+
+snippet "in i" "integer, intent()" 
+INTEGER, INTENT($1) :: $0
+endsnippet
+
+snippet re "real"	
+REAL :: $0
+endsnippet
+
+snippet lo "logical" 
+LOGICAL :: $0
+endsnippet
+
+snippet if "if (condition) then ..." 
+IF ($1) THEN
+	$2
+END IF$0
+endsnippet
+
+snippet ife "if...else..." 
+IF ($1) THEN
+	$2
+ELSE
+	$3 
+END IF$0
+endsnippet
+
+snippet do "DO ... END DO" 
+DO $1 = ${2:start}, ${3:end}, ${4:step}
+	$5
+END DO$0
+endsnippet
+
+snippet pre "present()" 
+PRESENT(${1:optional})$0
+endsnippet
+
+snippet face "interface" 
+interface
+	$1
+end interface$0
+endsnippet
