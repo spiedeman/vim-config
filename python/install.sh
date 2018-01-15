@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cwd=$PWD
+sudo apt install python-dev -y
 python get-pip.py --user
 pip install --user thefuck powerline-status
 
