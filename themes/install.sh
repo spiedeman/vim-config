@@ -13,11 +13,12 @@ if ! [ -d ~/tmp ]; then
 fi
 cd ~/tmp
 
+sudo apt install libgtk-3-dev autoconf -y
 git clone https://github.com/horst3180/arc-theme --depth 1
 cd arc-theme
 ./autogen.sh --prefix=/usr
 sudo make install
-# cd .. && rm -rf arc-theme
+cd .. && rm -rf arc-theme
 
 echo "TO UNINSTALL arc-theme..."
 echo "Type: "
@@ -29,3 +30,7 @@ echo "<<< INSTALL numix-gtk-theme"
 sudo add-apt-repository ppa:numix/ppa
 sudo apt update
 sudo apt install numix-gtk-theme numix-icon-theme-circle -y
+
+# install compiz 
+sudo apt install unity-tweak-tool -y
+sudo apt install compizconfig-settings-manager compiz-plugins -y

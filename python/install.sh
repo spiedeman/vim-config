@@ -13,7 +13,7 @@ cd .. && rm -rf fonts
 if ! $(which wget > /dev/null 2>&1); then
     echo ">>> INSTALL wget..."
     # echo "xiaomei1102" | sudo -S apt install wget
-    sudo apt install wget
+    sudo apt install wget -y
 fi
 
 cd ~

@@ -166,9 +166,9 @@ bind 'set visible-stats on'
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 
 #### FOR THEFUCK
-if [ $FROM_SSH == "FALSE" ]; then
-    eval "$(thefuck --alias fuck)"
-fi
+#if [ $FROM_SSH == "FALSE" ]; then
+#    eval "$(thefuck --alias fuck)"
+#fi
 
 #### FOR POWERLINE
 if [ $FROM_SSH == "FALSE" ]; then
@@ -220,7 +220,7 @@ INFOPATH=$HOME/program/texlive/2016/texmf-dist/doc/info:$INFOPATH; export INFOPA
 
 #### FOR COSMOMC  
 ## intel fortran compiler
-source $HOME/program/intel/compilers_and_libraries_2017.2.174/linux/bin/compilervars.sh intel64
+source $HOMe/program/intel/compilers_and_libraries_2018.0.128/linux/bin/compilervars.sh intel64
 ## openmpi
 export PATH=$HOME/program/openmpi/bin:${PATH}
 ## cfitsio
