@@ -2,7 +2,7 @@
 
 sudo apt install python-dev -y
 python get-pip.py --user
-pip install --user thefuck powerline-status
+pip install --user powerline-status
 
 cd ~
 git clone https://github.com/powerline/fonts.git --depth=1

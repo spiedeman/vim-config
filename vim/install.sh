@@ -4,7 +4,7 @@ echo "<<< INSTALL VIM8.0 AND CONFIGURE IT."
 # echo "\n" | sudo -S add-apt-repository ppa:jonathonf/vim
 echo "xiaomei1102" | sudo -S add-apt-repository ppa:jonathonf/vim -y
 sudo apt update
-echo "y" | sudo apt upgrade
+sudo apt upgrade -y
 
 sudo apt install vim-gtk3-py2
 vimpy2=$(echo "1" | sudo update-alternatives --config vim | grep py2)
@@ -40,4 +40,4 @@ fi
 cp vimrc ~/.vimrc
 
 # 
-vim -c "PlugInstall" -c "PlugUpdate!" -c "q" -c "q"
+vim -c "PlugInstall!"  -c "q" -c "q"
