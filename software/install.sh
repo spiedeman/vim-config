@@ -19,3 +19,13 @@ echo "<<< INSTALL moc."
 sudo apt install moc moc-ffmpeg-plugin
 [ -d ~/.moc ] || mkdir ~/.moc
 cp moc/* ~/.moc
+
+
+echo "<<< INSTALL zathura."
+echo ">>> some libaraies need to be installed for"
+echo ">>> Supporting Forward/Backward Search"
+echo ">>> with vimtex"""
+sudo apt install libsynctex1 xdotool -y
+sudo apt install zathura zathura-pdf-poppler zathura-djvu zathura-dev zathura-ps -y
+[ -d ~/.config/zathura ] || mkdir ~/.config/zathura
+[ -f ~/.config/zathura/zathurarc ] || cp zathura/zathurarc ~/.config/zathura/zathurarc
