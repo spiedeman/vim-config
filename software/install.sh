@@ -13,3 +13,9 @@ echo "<<< INSTALL flux."
 sudo add-apt-repository ppa:nathan-renniewaldock/flux
 sudo apt update
 sudo apt install fluxgui
+
+
+echo "<<< INSTALL moc."
+sudo apt install moc moc-ffmpeg-plugin
+[ -d ~/.moc ] || mkdir ~/.moc
+cp moc/* ~/.moc
