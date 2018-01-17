@@ -32,5 +32,14 @@ sudo apt update
 sudo apt install numix-gtk-theme numix-icon-theme-circle -y
 
 # install compiz 
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+echo ">>> compiz_ubuntu16.04_3d.profile"
+echo ">>> is the config file for compiz."
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 sudo apt install unity-tweak-tool -y
 sudo apt install compizconfig-settings-manager compiz-plugins -y
+
+# Bing Wallpaper
+sudo add-apt-repository ppa:whizzzkid/bingwallpaper
+sudo apt update
+sudo apt install bingwallpaper

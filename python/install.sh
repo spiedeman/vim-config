@@ -2,6 +2,8 @@
 
 sudo apt install python-dev -y
 python get-pip.py --user
+[ -d ~/.pip ] || mkdir ~/.pip
+cp pip.conf ~/.pip
 pip install --user powerline-status
 
 cd ~
