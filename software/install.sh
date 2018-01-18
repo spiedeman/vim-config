@@ -9,11 +9,8 @@ bash install.sh
 cd .. && rm -rf autojump_v21.1.2
 
 
-echo "<<< INSTALL flux."
-sudo add-apt-repository ppa:nathan-renniewaldock/flux
-sudo apt update
-sudo apt install fluxgui
-
+echo "<<< INSTALL redshift-gtk."
+sudo apt install redshift redshift-gtk -y
 
 echo "<<< INSTALL moc."
 sudo apt install moc moc-ffmpeg-plugin
