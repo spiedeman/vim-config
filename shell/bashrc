@@ -162,6 +162,16 @@ bind 'set completion-ignore-case on'
 bind 'set visible-stats on'
 
 ################################### PLUGIN ####################################
+#### FOR iSearch
+function s(){
+    local spath=`which s`
+    if [[ ${1:0:1} != '-' ]]
+    then
+        $spath $* | more
+    else
+        $spath $*
+    fi
+}
 #### FOR AUTOJUMP 
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 
@@ -200,10 +210,10 @@ export office=xuwutao@124.16.143.99:/home/xuwutao
 export xuwutao="-i ~/.ssh/xuwutao_id_rsa xuwutao@159.226.161.107:/public/home/xuwutao"
 
 #### FOR JAVA
-export JAVA_HOME=$HOME/program/jdk1.8.0_144
-export JRE_HOME=$HOME/program/jdk1.8.0_144/jre 
-export CLASSPATH=.:$CLASSPATH:$JAVA_HOME/lib:$JRE_HOME/lib 
-export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH 
+export JAVA_HOME=$HOME/program/jdk1.8.0_151
+export JRE_HOME=$HOME/program/jdk1.8.0_151/jre
+export CLASSPATH=.:$CLASSPATH:$JAVA_HOME/lib:$JRE_HOME/lib
+export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
 
 #### FOR PYTHON
 ## python virtualenvs
@@ -220,7 +230,7 @@ INFOPATH=$HOME/program/texlive/2016/texmf-dist/doc/info:$INFOPATH; export INFOPA
 
 #### FOR COSMOMC  
 ## intel fortran compiler
-source $HOMe/program/intel/compilers_and_libraries_2018.0.128/linux/bin/compilervars.sh intel64
+source $HOME/program/intel/compilers_and_libraries_2018.0.128/linux/bin/compilervars.sh intel64
 ## openmpi
 export PATH=$HOME/program/openmpi/bin:${PATH}
 ## cfitsio
@@ -234,7 +244,7 @@ PATH=$HOME/program/pgplot:$PATH
 ## healpix
 export PATH=$HOME/program/Healpix_3.31/bin:${PATH}
 ## python library in cosmomc
-export PYTHONPATH=$HOME/workspace/CosmoMC-June2016/python:$PYTHONPATH
+export PYTHONPATH=$HOME/work/CosmoMC-June2016/python:$PYTHONPATH
 
 
 
@@ -252,3 +262,5 @@ if [ $FROM_SSH == "FALSE" ]; then
         echo "exit from tmux-session..."
     fi
 fi
+#安装openmpi后添加的系统路径
+#安装openmpi后添加的系统路径
