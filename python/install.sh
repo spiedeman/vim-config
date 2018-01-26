@@ -35,5 +35,5 @@ mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d
 fc-cache -vf ~/.fonts
 
 pip install --user virtualenvwrapper
-pip install --user numpy scipy sympy pandas matplotlib
-pip install --user ipython theano seaborn pymc3
+# pip install --user numpy scipy sympy pandas matplotlib
+# pip install --user ipython theano seaborn pymc3
