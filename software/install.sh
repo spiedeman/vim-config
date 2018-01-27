@@ -15,7 +15,7 @@ sudo apt install redshift redshift-gtk -y
 echo "<<< INSTALL moc."
 sudo apt install moc moc-ffmpeg-plugin
 [ -d ~/.moc ] || mkdir ~/.moc
-cp moc/* ~/.moc
+cp -rp moc/* ~/.moc/
 
 
 echo "<<< INSTALL zathura."

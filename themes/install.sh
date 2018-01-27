@@ -40,6 +40,7 @@ sudo apt install unity-tweak-tool -y
 sudo apt install compizconfig-settings-manager compiz-plugins -y
 
 # Bing Wallpaper
+[ -d ~/.config/autostart ] || mkdir ~/.config/autostart
 sudo add-apt-repository ppa:whizzzkid/bingwallpaper
 sudo apt update
 sudo apt install bingwallpaper

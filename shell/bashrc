@@ -107,7 +107,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
+# enable Programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
@@ -149,7 +149,7 @@ alias ssh2='ssh -X xuwutao@124.16.143.99'
 alias sfat='ssh -X xuwutao@159.226.161.107 -i ~/.ssh/xuwutao_id_rsa'
 alias cdd='cd ~/Downloads'
 alias cdc='cd ~/Documents'
-alias cdp='cd ~/program'
+alias cdp='cd ~/Program'
 alias cdw='cd ~/workspace'
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -209,40 +209,34 @@ export FZF_DEFAULT_OPTS+="alt-i:toggle-in,alt-o:toggle-out"
 export office=xuwutao@124.16.143.99:/home/xuwutao
 export xuwutao="-i ~/.ssh/xuwutao_id_rsa xuwutao@159.226.161.107:/public/home/xuwutao"
 
-#### FOR JAVA
-export JAVA_HOME=$HOME/program/jdk1.8.0_151
-export JRE_HOME=$HOME/program/jdk1.8.0_151/jre
-export CLASSPATH=.:$CLASSPATH:$JAVA_HOME/lib:$JRE_HOME/lib
-export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
-
 #### FOR PYTHON
 ## python virtualenvs
 export WORKON_HOME=$HOME/.virtualenvs
 source $HOME/.local/bin/virtualenvwrapper.sh
 ## python wigner-function
-export PATH=$HOME/program/wigxjpf-1.6/bin:$PATH
+export PATH=$HOME/Program/wigxjpf-1.6/bin:$PATH
 export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
 
 #### TEXLIVE 2016
-PATH=$HOME/program/texlive/2016/bin/x86_64-linux:$PATH; export PATH
-MANPATH=$HOME/program/texlive/2016/texmf-dist/doc/man:$MANPATH; export MANPATH
-INFOPATH=$HOME/program/texlive/2016/texmf-dist/doc/info:$INFOPATH; export INFOPATH
+PATH=$HOME/Program/texlive/2016/bin/x86_64-linux:$PATH; export PATH
+MANPATH=$HOME/Program/texlive/2016/texmf-dist/doc/man:$MANPATH; export MANPATH
+INFOPATH=$HOME/Program/texlive/2016/texmf-dist/doc/info:$INFOPATH; export INFOPATH
 
 #### FOR COSMOMC  
 ## intel fortran compiler
-source $HOME/program/intel/compilers_and_libraries_2018.0.128/linux/bin/compilervars.sh intel64
+source $HOME/Program/intel/parallel_studio_xe_2017.3.053/bin/psxevars.sh intel64
 ## openmpi
-export PATH=$HOME/program/openmpi/bin:${PATH}
+export PATH=$HOME/Program/openmpi/bin:${PATH}
 ## cfitsio
-export LD_LIBRARY_PATH=$HOME/program/cfitsio/lib:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=$HOME/Program/cfitsio/lib:${LD_LIBRARY_PATH}
 ## pgplot
-PATH=$HOME/program/pgplot:$PATH
- PGPLOT_DIR=$HOME/program/pgplot/;export PGPLOT_DIR
- export LD_LIBRARY_PATH=$HOME/program/pgplot:${LD_LIBRARY_PATH}
- PGPLOT_FONT=$HOME/program/pgplot/grfont.dat ;export PGPLOT_FONT
+PATH=$HOME/Program/pgplot:$PATH
+ PGPLOT_DIR=$HOME/Program/pgplot/;export PGPLOT_DIR
+ export LD_LIBRARY_PATH=$HOME/Program/pgplot:${LD_LIBRARY_PATH}
+ PGPLOT_FONT=$HOME/Program/pgplot/grfont.dat ;export PGPLOT_FONT
  PGPLOT_DEV=/Xserve;export PGPLOT_DEV
 ## healpix
-export PATH=$HOME/program/Healpix_3.31/bin:${PATH}
+export PATH=$HOME/Program/Healpix_3.31/bin:${PATH}
 ## python library in cosmomc
 export PYTHONPATH=$HOME/work/CosmoMC-June2016/python:$PYTHONPATH
 
