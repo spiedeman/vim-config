@@ -69,7 +69,7 @@ ReadTags = no
 #
 # Example:    MusicDir = "/home/joe/music"
 #
-#MusicDir =
+MusicDir = "/home/xuwutao/Music"
 
 # Start in the music directory by default?  If set to 'no', start
 # in the current directory by default.  A single directory on
@@ -186,12 +186,12 @@ ReadTags = no
 #HideFileExtension = no
 
 # Show file format in menu?
-#ShowFormat = yes
+ShowFormat = yes
 
 # Show file time in menu?  Possible values: 'yes', 'no' and 'IfAvailable'
 # (meaning show the time only when it is already known, which often works
 # faster).
-#ShowTime = IfAvailable
+ShowTime = IfAvailable
 
 # Show time played as a percentage in the time progress bar.
 #ShowTimePercent = no
@@ -219,7 +219,7 @@ ReadTags = no
 #
 # Example:    Theme = laras_theme
 #
-#Theme =
+Theme = xuwutao_theme
 
 # The theme used when running on an xterm.
 #
