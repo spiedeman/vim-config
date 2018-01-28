@@ -43,10 +43,10 @@ docker run hello-world
 sudo systemctl enable docker
 
 # To disable this behavior, use `disable` instead
-sudo systemctl disable docker
+# sudo systemctl disable docker
 
-# Docker is automatically configured to start on boot using `upstart`. To
-# disable this behavior, use the following command
-echo manual | sudo tee /etc/init/docker.override
-
-sudo chkconfig docker on
+# # Docker is automatically configured to start on boot using `upstart`. To
+# # disable this behavior, use the following command
+# echo manual | sudo tee /etc/init/docker.override
+#
+# sudo chkconfig docker on
