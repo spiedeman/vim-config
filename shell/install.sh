@@ -7,7 +7,7 @@
 sudo apt autoremove libreoffice-common unity-webapps-common -y
 
 sudo apt update 
-#sudo apt upgrade -y
+sudo apt upgrade -y
 sudo apt install tree -y
 
 cp bashrc ~/.bashrc
