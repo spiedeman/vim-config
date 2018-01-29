@@ -20,7 +20,7 @@ cp -r moc ~/.moc
 echo "<<< INSTALL mpv."
 sudo apt install mpv 
 [ -d ~/.config/mpv ] || mkdir ~/.config/mpv
-cp -r mpv ~/.config/mpv
+cp -r ./mpv ~/.config/mpv
 
 echo "<<< INSTALL zathura."
 echo ">>> some libaraies need to be installed for"
@@ -29,4 +29,8 @@ echo ">>> with vimtex"""
 sudo apt install libsynctex1 xdotool -y
 sudo apt install zathura zathura-pdf-poppler zathura-djvu zathura-dev zathura-ps -y
 [ -d ~/.config/zathura ] || mkdir ~/.config/zathura
-[ -f ~/.config/zathura/zathurarc ] || cp zathura/zathurarc ~/.config/zathura/zathurarc
+[ -f ~/.config/zathura/zathurarc ] || cp ./zathura/zathurarc ~/.config/zathura/zathurarc
+
+echo "<<< modify guake"
+sudo cp -a ./guake/guake.glade /usr/share/guake
+sudo cp -a ./guake/guake_app.py /usr/lib/python2.7/dist-packages/guake
