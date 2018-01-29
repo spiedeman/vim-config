@@ -17,6 +17,10 @@ sudo apt install moc moc-ffmpeg-plugin
 [ -d ~/.moc ] || mkdir ~/.moc
 cp -r moc ~/.moc
 
+echo "<<< INSTALL mpv."
+sudo apt install mpv 
+[ -d ~/.config/mpv ] || mkdir ~/.config/mpv
+cp -r mpv ~/.config/mpv
 
 echo "<<< INSTALL zathura."
 echo ">>> some libaraies need to be installed for"

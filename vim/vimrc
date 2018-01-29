@@ -159,15 +159,14 @@
         " colorscheme solarized
     else 
         set background=dark "实际上light才会给出正确的solarized配色
-        " set background=light     "实际上light才会给出正确的solarized配色
+        set background=light     "实际上light才会给出正确的solarized配色
         colorscheme NeoSolarized
         colorscheme solarized
     endif
     " colorscheme solarized  "设定配色方案
     "colorscheme dracula   "设定配色方案
     "colorscheme molokai
-    let g:gnomebackground = 1
-    if g:gnomebackground == 1 "dark
+    if &background == "dark"
         hi CursorLine   cterm=NONE ctermbg=black     ctermfg=none
         hi CursorColumn cterm=NONE ctermbg=black     ctermfg=none
         hi Pmenu        cterm=NONE ctermbg=darkblue  ctermfg=234
