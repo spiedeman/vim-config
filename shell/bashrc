@@ -213,9 +213,17 @@ export xuwutao="-i ~/.ssh/xuwutao_id_rsa xuwutao@159.226.161.107:/public/home/xu
 ## python virtualenvs
 export WORKON_HOME=$HOME/.virtualenvs
 source $HOME/.local/bin/virtualenvwrapper.sh
+
 ## python wigner-function
-export PATH=$HOME/Program/wigxjpf-1.6/bin:$PATH
+# export PATH=$HOME/Program/wigxjpf-1.6/bin:$PATH
 export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
+## intelpython2
+function activate(){
+    export PYTHONNOUSERSITE=1
+    export LIBRARY_PATH=$HOME/intel/intelpython2/lib:$LIBRARY_PATH
+    source $HOME/intel/intelpython2/bin/activate $*
+    alias deactivate="unset PYTHONNOUSERSITE && source deactivate && source ~/.bashrc && unalias deactivate"
+}
 
 #### TEXLIVE 2016
 PATH=$HOME/Program/texlive/2016/bin/x86_64-linux:$PATH; export PATH
@@ -256,5 +264,4 @@ if [ $FROM_SSH == "FALSE" ]; then
         echo "exit from tmux-session..."
     fi
 fi
-#安装openmpi后添加的系统路径
-#安装openmpi后添加的系统路径
+ 
