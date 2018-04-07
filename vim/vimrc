@@ -163,34 +163,41 @@
     endif
     if $FROM_SSH == 'TRUE'
         colorscheme dracula
+        if &background == "dark"
+            hi Pmenu cterm=NONE ctermbg=darkblue ctermfg=234
+            hi PmenuSel     cterm=BOLD ctermbg=darkgreen ctermfg=234
+        else
+            hi Pmenu        cterm=BOLD ctermbg=blue      ctermfg=white
+            hi PmenuSel     cterm=BOLD ctermbg=darkcyan  ctermfg=yellow
+        endif
     else 
         set background=dark "实际上light才会给出正确的solarized配色
         set background=light     "实际上light才会给出正确的solarized配色
         colorscheme NeoSolarized
         colorscheme solarized
+        if &background == "dark"
+            hi CursorLine   cterm=NONE ctermbg=black     ctermfg=none
+            hi CursorColumn cterm=NONE ctermbg=black     ctermfg=none
+            hi Pmenu        cterm=NONE ctermbg=darkblue  ctermfg=234
+            hi PmenuSel     cterm=BOLD ctermbg=darkgreen ctermfg=234
+            hi StatusLine   cterm=reverse
+            hi Folded       cterm=BOLD ctermbg=black     ctermfg=246
+            hi SignColumn   cterm=NONE ctermbg=black     ctermfg=none
+            hi Error        cterm=NONE ctermbg=black     ctermfg=red
+            hi Todo         cterm=NONE ctermbg=black     ctermfg=yellow
+        else                      "light
+            hi CursorLine   cterm=NONE ctermbg=lightgrey ctermfg=none
+            hi CursorColumn cterm=NONE ctermbg=lightgrey ctermfg=none
+            hi Pmenu        cterm=BOLD ctermbg=blue      ctermfg=white
+            hi PmenuSel     cterm=BOLD ctermbg=darkcyan  ctermfg=yellow
+            hi StatusLine   cterm=inverse
+            hi StatusLineNC cterm=none ctermbg=grey
+            hi SignColumn   cterm=NONE ctermbg=lightgrey ctermfg=none
+        endif
     endif
     " colorscheme solarized  "设定配色方案
     "colorscheme dracula   "设定配色方案
     "colorscheme molokai
-    if &background == "dark"
-        hi CursorLine   cterm=NONE ctermbg=black     ctermfg=none
-        hi CursorColumn cterm=NONE ctermbg=black     ctermfg=none
-        hi Pmenu        cterm=NONE ctermbg=darkblue  ctermfg=234
-        hi PmenuSel     cterm=BOLD ctermbg=darkgreen ctermfg=234
-        hi StatusLine   cterm=reverse
-        hi Folded       cterm=BOLD ctermbg=black     ctermfg=246
-        hi SignColumn   cterm=NONE ctermbg=black     ctermfg=none
-        hi Error        cterm=NONE ctermbg=black     ctermfg=red
-        hi Todo         cterm=NONE ctermbg=black     ctermfg=yellow
-    else                      "light
-        hi CursorLine   cterm=NONE ctermbg=lightgrey ctermfg=none
-        hi CursorColumn cterm=NONE ctermbg=lightgrey ctermfg=none
-        hi Pmenu        cterm=BOLD ctermbg=blue      ctermfg=white
-        hi PmenuSel     cterm=BOLD ctermbg=darkcyan  ctermfg=yellow
-        hi StatusLine   cterm=inverse
-        hi StatusLineNC cterm=none ctermbg=grey
-        hi SignColumn   cterm=NONE ctermbg=lightgrey ctermfg=none
-    endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "Tab操作快捷 方式
     nnoremap <C-t>n :tabnew<CR>
