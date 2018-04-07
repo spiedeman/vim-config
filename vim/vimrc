@@ -164,7 +164,7 @@
     if $FROM_SSH == 'TRUE'
         colorscheme dracula
         if &background == "dark"
-            hi Pmenu cterm=NONE ctermbg=darkblue ctermfg=234
+            hi Pmenu cterm=NONE ctermbg=blue ctermfg=234
             hi PmenuSel     cterm=BOLD ctermbg=darkgreen ctermfg=234
         else
             hi Pmenu        cterm=BOLD ctermbg=blue      ctermfg=white
