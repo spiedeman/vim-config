@@ -16,6 +16,9 @@
     " Make sure using single quotes
     " Shorthand notation for full URL.
     Plug 'icymind/NeoSolarized'
+    Plug 'dracula/vim',{'as':'dracula'}     "`as` will install the plugin in
+                                            "a directory called 'dracula' instead
+                                            "of just 'vim'
     Plug 'altercation/vim-colors-solarized'
     Plug 'yianwillis/vimcdoc'               "中文帮助文档
     Plug 'scrooloose/nerdtree'				"文件树浏览
@@ -157,6 +160,9 @@
         " set background=light     "实际上light才会给出正确的solarized配色
         colorscheme NeoSolarized
         " colorscheme solarized
+    endif
+    if $FROM_SSH == 'TRUE'
+        colorscheme dracula
     else 
         set background=dark "实际上light才会给出正确的solarized配色
         set background=light     "实际上light才会给出正确的solarized配色
