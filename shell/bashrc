@@ -147,6 +147,7 @@ export FROM_GNOME
 #### ALIAS
 alias ssh2='ssh -X xuwutao@124.16.143.99'
 alias sfat='ssh -X xuwutao@159.226.161.107 -i ~/.ssh/xuwutao_id_rsa'
+alias svultr='ssh root@144.202.41.163'
 alias cdd='cd ~/Downloads'
 alias cdc='cd ~/Documents'
 alias cdp='cd ~/Program'
@@ -203,6 +204,45 @@ export FZF_DEFAULT_OPTS+="alt-p:toggle-preview,alt-w:toggle-preview-wrap,"
 ## option 'in/out' works when --multi exists
 export FZF_DEFAULT_OPTS+="alt-i:toggle-in,alt-o:toggle-out"
 
+#### FOR PERCOL(something like fzf)
+function ppgrep(){
+    if [[ $1 == "" ]]; then
+        PERCOL=percol
+    else
+        PERCOL="percol --query $1"
+    fi
+    ps aux | eval $PERCOL | awk '{print $2}'
+}
+
+function ppkill(){
+    if [[ $1 =~ "^-" ]]; then
+        QUERY=""
+    else
+        QUERY=$1
+        [[ $# > 0 ]] && shift
+    fi
+    ppgrep $QUERY | xargs kill $*
+}
+
+function pattach() {
+    if [[ $1 == "" ]]; then
+        PERCOL=percol
+    else
+        PERCOL="percol --query $1"
+    fi
+
+    sessions=$(tmux ls)
+    [ $? -ne 0 ] && return
+
+    session=$(echo $sessions | eval $PERCOL | cut -d : -f 1)
+    if [[ -n "$session" ]]; then
+        tmux att -t $session
+    fi
+}
+
+function exists() { 
+    which $1 &> /dev/null 
+}
 
 ############################### UBUNTU SOFTWARE ###############################
 #### FOR SOFTWARE IN PROGRAM
