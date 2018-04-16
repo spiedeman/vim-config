@@ -18,6 +18,7 @@ sudo apt install moc moc-ffmpeg-plugin
 cp -r moc ~/.moc
 
 echo "<<< INSTALL mpv."
+sudo add-apt-repository ppa:mc3man/mpv-tests
 sudo apt install mpv 
 [ -d ~/.config/mpv ] || mkdir ~/.config/mpv
 cp -r ./mpv ~/.config/mpv

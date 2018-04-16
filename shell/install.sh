@@ -6,6 +6,9 @@
 #sudo cp sources.list /etc/apt/sources.list
 sudo apt autoremove libreoffice-common unity-webapps-common -y
 
+gsetting set com.canonical.indicator.datetime time-format 'custom'
+gsetting set com.canonical.indicator.datetime custom-time-format '%Y年%m月%d %A %H:%M:%S'
+
 sudo apt update 
 sudo apt upgrade -y
 sudo apt install tree -y
